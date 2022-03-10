@@ -3,25 +3,34 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          <ion-list-header>My Profile</ion-list-header>
+          <ion-note>Em que posso te ajudar?</ion-note>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+          <ion-menu-toggle auto-hide="false">
+
+            <ion-item routerDirection="root" routerLink="/home" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="home-outline" md="home-sharp"></ion-icon>
+              <ion-label>Início</ion-label>
             </ion-item>
+
+            <ion-item routerDirection="root" routerLink="/xp" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="bag-outline" md="bag-sharp"></ion-icon>
+              <ion-label>Experiência</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" routerLink="/skills" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="hammer-outline" md="hammer-sharp"></ion-icon>
+              <ion-label>Habilidades</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" routerLink="/schools" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="book-outline" md="book-sharp"></ion-icon>
+              <ion-label>Escolaridade</ion-label>
+            </ion-item>
+
           </ion-menu-toggle>
         </ion-list>
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
