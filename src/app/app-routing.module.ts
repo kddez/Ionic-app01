@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'inicio',
     pathMatch: 'full'
   },
   {
@@ -12,20 +12,37 @@ const routes: Routes = [
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    path: 'inicio',
+    loadChildren: () => import('./page/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'xp',
-    loadChildren: () => import('./pages/xp/xp.module').then( m => m.XpPageModule)
+    path: 'usuarios',
+    loadChildren: () => import('./page/user/user.module').then( m => m.UserPageModule)
   },
   {
-    path: 'skills',
-    loadChildren: () => import('./pages/skills/skills.module').then( m => m.SkillsPageModule)
+    path: 'documentos',
+    loadChildren: () => import('./page/docs/docs.module').then( m => m.DocsPageModule)
   },
   {
-    path: 'schools',
-    loadChildren: () => import('./pages/schools/schools.module').then( m => m.SchoolsPageModule)
+    path: 'contatos',
+    loadChildren: () => import('./page/contacts/contacts.module').then( m => m.ContactsPageModule)
+  },
+  {
+    path: 'sobre',
+    loadChildren: () => import('./page/about/about.module').then( m => m.AboutPageModule)
+  },
+  {
+    path: 'faq',
+    loadChildren: () => import('./page/faq/faq.module').then( m => m.FaqPageModule)
+  },
+
+  /**
+   * Esta rota (path: '**') deve ser SEMPRE a última rota desta lista.
+   * Se criar novas páginas, edite este arquivo para satisfazer a regra acima.
+   */
+  {
+    path: '**',
+    loadChildren: () => import('./page/e404/e404.module').then( m => m.E404PageModule)
   }
 ];
 

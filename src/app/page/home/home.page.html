@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+
+    <!-- Ícone do menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Apresentação</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!--
+    Ref.: https://ionicframework.com/docs/v3/api/components/slides/Slides/
+    Importante! Tente deixar todas as imagens com as mesmas dimensões.
+  -->
+  <ion-slides [options]="{ autoplay: { delay: 2000 } }">
+    <ion-slide><img src="assets/screens01.jpg" alt="Telas do aplicativo"> </ion-slide>
+    <ion-slide><img src="assets/screens02.jpg" alt="Telas do aplicativo"> </ion-slide>
+    <ion-slide><img src="assets/screens03.jpg" alt="Telas do aplicativo"> </ion-slide>
+  </ion-slides>
+
+  <h3 class="ion-text-center app-name ion-padding">My&bull;Docs&bull;App</h3>
+  <p>O melhor aplicativo de gestão de alguma coisa do mercado.</p>
+  <p>Com ele você pode:</p>
+  <ul>
+    <li>Fazer alguma coisa;</li>
+    <li>Fazer várias coisas;</li>
+    <li>Não fazer nada;</li>
+    <li>Fazer de tudo, um pouco;</li>
+    <li>E... Muito mais...</li>
+  </ul>
+
+  <h4><strong>O que você deseja?</strong></h4>
+
+  <!-- Ref.: https://ionicframework.com/docs/api/grid -->
+  <ion-grid>
+    <ion-row>
+
+      <ion-col class="grid-item" routerLink="/usuarios">
+        <ion-icon ios="people-outline" md="people-sharp"></ion-icon>
+        <span>Gestão de usuários</span>
+      </ion-col>
+
+      <ion-col class="grid-item" routerLink="/documentos">
+        <ion-icon ios="documents-outline" md="documents-sharp"></ion-icon>
+        <span>Gestão de documentos</span>
+      </ion-col>
+
+      <ion-col class="grid-item" routerLink="/faq">
+        <ion-icon ios="help-circle-outline" md="help-circle-sharp"></ion-icon>
+        <span>Questões frequentes</span>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
