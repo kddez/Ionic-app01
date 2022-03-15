@@ -37,6 +37,15 @@ const routes: Routes = [
   },
 
   /**
+   * Páginas auxiliares (administrativas).
+   * Não serão usadas no aplicativo.
+   */
+   {
+    // Cria a coleção 'faq' no Firestore.
+    path: 'db/faq',
+     loadChildren: () => import('./db/faq/faq.module').then( m => m.FaqPageModule)
+   },
+  /**
    * Esta rota (path: '**') deve ser SEMPRE a última rota desta lista.
    * Se criar novas páginas, edite este arquivo para satisfazer a regra acima.
    */
