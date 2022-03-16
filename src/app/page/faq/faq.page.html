@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+
+    <!-- Ícone do menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Questões frequêntes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="ion-text-center">
+    <ion-img src="assets/faq01.png"></ion-img>
+  </div>
+&nbsp;
+  <div *ngIf="faqs">
+
+    <ion-item-divider *ngFor="let faq of faqs">
+
+      <dl>
+        <dt><strong>{{ faq.question }}</strong></dt><br>
+        <dd>{{ faq.response }}</dd>
+      </dl>
+
+    </ion-item-divider>
+
+  </div>
+
+</ion-content>

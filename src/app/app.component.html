@@ -3,26 +3,48 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          <ion-list-header>My&bull;Docs&bull;App</ion-list-header>
+          <ion-note>Ajuda e suporte</ion-note>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
+          <ion-menu-toggle auto-hide="false">
+
+            <ion-item routerDirection="root" routerLink="/inicio" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="home-outline" md="home-sharp"></ion-icon>
+              <ion-label>Início</ion-label>
             </ion-item>
+
+            <ion-item routerDirection="root" routerLink="/usuarios" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="people-outline" md="people-sharp"></ion-icon>
+              <ion-label>Usuários</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" routerLink="/documentos" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="documents-outline" md="documents-sharp"></ion-icon>
+              <ion-label>Documentos</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" routerLink="/faq" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="help-circle-outline" md="help-circle-sharp"></ion-icon>
+              <ion-label>Questões frequêntes</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" routerLink="/contatos" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="chatbubble-ellipses-outline" md="chatbubble-ellipses-sharp"></ion-icon>
+              <ion-label>Faça contato</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" routerLink="/sobre" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" ios="information-circle-outline" md="information-circle-sharp"></ion-icon>
+              <ion-label>Sobre</ion-label>
+            </ion-item>
+
           </ion-menu-toggle>
         </ion-list>
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
       </ion-content>
+
+      <footer class="ion-text-center ion-padding">&copy; Copyright 2022 Eu mesmo.</footer>
+
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
