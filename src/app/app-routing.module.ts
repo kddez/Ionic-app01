@@ -51,8 +51,13 @@ const routes: Routes = [
     path: 'db/manual',
     loadChildren: () => import('./db/manual/manual.module').then(m => m.ManualPageModule)
   },
+  {
+    path: 'view/:id',
+    loadChildren: () => import('./page/view/view.module').then( m => m.ViewPageModule)
+  },
 
   /**
+   * Oooops! Atenção!
    * Esta rota (path: '**') deve ser SEMPRE a última rota desta lista.
    * Se criar novas páginas, edite este arquivo para satisfazer a regra acima.
    */

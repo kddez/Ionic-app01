@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+// Importa dependências
 import { initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { getFirestore } from 'firebase/firestore';
-
 import { collection, addDoc } from 'firebase/firestore';
 
 @Component({
@@ -13,6 +13,7 @@ import { collection, addDoc } from 'firebase/firestore';
 })
 export class FaqPage implements OnInit {
 
+  // Dados a serem armazenados na coleção 'faq'
   data = [
     {
       question: 'Por que este aplicativo é tão feio?',
@@ -40,25 +41,39 @@ export class FaqPage implements OnInit {
     }
   ];
 
-  constructor() {
-    const app = initializeApp(environment.firebase);
-  }
+  // Conexão com Firebase. Observe o uso da chave de 'environment'
+  app = initializeApp(environment.firebase);
+
+  // Conexão com Firestore
+  db = getFirestore();
+
+  constructor() { }
 
   ngOnInit() { }
 
-  async create() {
+  /**
+   * Função que salva os dados 'data' no banco de dados.
+   * Esta função é executada pelo 'click' no botão da view.
+   */
+  create() {
 
-    const db = getFirestore();
-
+    // Itera 'data'
     this.data.forEach(async el => {
 
+      // Tentar armazenar cada documento (addDoc()) na coleção 'manual' (collection())
       try {
-        const docRef = await addDoc(collection(db, 'faq'), {
+        const docRef = await addDoc(collection(this.db, 'faq'), {
           question: el.question,
           response: el.response
         });
-        console.log('documento adicionado com o ID: ', docRef.id);
+
+        // Se deu certo, exibe o ID do documento no console
+        console.log('Documento adicionado com o ID: ', docRef.id);
+
+        // Se de errado...
       } catch (e) {
+
+        // Exibe mensagem de eror no console.
         console.error('Erro ao adicionar documento: ', e);
       }
 

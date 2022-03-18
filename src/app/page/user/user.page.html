@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
 
-        <!-- Ícone do menu -->
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+    <!-- Ícone do menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
 
     <ion-title>Usuários</ion-title>
   </ion-toolbar>
@@ -14,6 +14,29 @@
 
   <div class="ion-text-center">
     <ion-img src="assets/users01.png"></ion-img>
+  </div>
+  <h3>Nesta seção você encontra diversos artigos de ajuda sobre as funcionalidades de gestão de usuários da plataforma.</h3>
+
+  <!-- Exibe esta div somente se existem documentos a serem exibidos -->
+  <div *ngIf="manuals">
+
+    <!--
+      Loop principal:
+      Obtém cada item de 'manuals[]' e lista dentro do 'ion-card'.
+      'routerLink' aponta para a página view que recebe o id do documento a ser visualizado.
+     -->
+    <div *ngFor="let manual of manuals">
+
+      <ion-card class="ion-text-center ion-no-margin ion-margin-bottom" routerLink="/view/{{ manual.id }}">
+        <ion-img src="{{ manual.image}}"></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{ manual.title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>{{ manual.intro }}</ion-card-content>
+      </ion-card>
+
+    </div>
+
   </div>
 
 </ion-content>

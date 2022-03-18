@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-// Importa todas as bibliotecas necessárias
+// Importa todas as dependências necessárias
 import { initializeApp } from 'firebase/app';
 import { collection, query, where, onSnapshot, getFirestore } from 'firebase/firestore';
 import { environment } from 'src/environments/environment';
@@ -39,13 +39,17 @@ export class FaqPage implements OnInit {
       // Loop que itera cada faq obtida
       myFaqs.forEach((doc) => {
 
+        // Armazena dados na variável 'faq'
         this.faq = doc.data();
+
+        // Armazena o ID do documento em 'faq'
         this.faq.id = doc.id;
+
+        // Adiciona conteúdo de 'faq' em 'faqs' para ser usado na view
         this.faqs.push(this.faq);
 
       });
 
-      console.log(this.faqs);
     });
 
   }

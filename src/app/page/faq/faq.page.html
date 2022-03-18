@@ -7,7 +7,7 @@
     </ion-buttons>
 
     <ion-title>Questões frequêntes</ion-title>
-  </ion-toolbar>
+  </ion-toolbar> 
 </ion-header>
 
 <ion-content class="ion-padding">
@@ -15,9 +15,18 @@
   <div class="ion-text-center">
     <ion-img src="assets/faq01.png"></ion-img>
   </div>
-&nbsp;
+  &nbsp;
+
+  <!--
+    Só exibe a página se existem dados em 'faqs'.
+    Lembre-se que esses dados vem do backend na Internet.
+  -->
   <div *ngIf="faqs">
 
+    <!--
+      O loop 'ngFor' itera cada item de 'faqs', armazenando em 'faq' e exibindo.
+      O conteúdo de <ion-item-divider> será repetido para cada item de 'faqs'.
+    -->
     <ion-item-divider *ngFor="let faq of faqs">
 
       <dl>
