@@ -38,6 +38,28 @@
               <ion-label>Sobre</ion-label>
             </ion-item>
 
+            <ion-item-divider></ion-item-divider>
+
+            <div *ngIf="auth.user | async as user; else showLogin">
+
+              <ion-item routerDirection="root" routerLink="/usuario/perfil" lines="none" detail="false" routerLinkActive="selected">
+                <ion-thumbnail slot="start">
+                  <img src="{{ user.photoURL }}">
+                </ion-thumbnail>
+                <ion-label>Ver perfil</ion-label>
+              </ion-item>
+
+            </div>
+
+            <ng-template id="showLogin">
+
+              <ion-item routerDirection="root" routerLink="/usuario/login" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" ios="log-in-outline" md="log-in-sharp"></ion-icon>
+                <ion-label>Login / Entrar</ion-label>
+              </ion-item>
+
+            </ng-template>
+
           </ion-menu-toggle>
         </ion-list>
 

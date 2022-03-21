@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+
+    <!-- Ícone do menu -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Login / Entrar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="ion-wrap">
+    <ion-img src="assets/login01.png"></ion-img>
+
+    <p>Logue-se para ter acesso a recursos exclusivos.</p>
+    <ion-button (click)="login()" expand="block">
+      <ion-icon name="logo-google" slot="start"></ion-icon>
+      Logue-se com o Google
+    </ion-button>
+
+  </div>
+
+</ion-content>

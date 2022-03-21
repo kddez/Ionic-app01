@@ -1,18 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+// Importa dependências
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+export class AppComponent implements OnInit {
+
+  // Variável que armazena dados do usuário logado
+  user: any;
+
+  constructor(
+
+    // Injeta dependências
+    public auth: AngularFireAuth,
+  ) { }
+
+  // executada sempre que esta página é 'aberta'
+  ngOnInit() {
+
+    // Verifica se esta logado
+    this.auth.authState.subscribe(user => {
+      if (user) {
+        this.user = user;
+        console.log(user);
+      }
+    });
+
+  }
+
 }

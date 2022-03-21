@@ -55,6 +55,18 @@ const routes: Routes = [
     path: 'view/:id',
     loadChildren: () => import('./page/view/view.module').then( m => m.ViewPageModule)
   },
+  {
+    path: 'usuario/login',
+    loadChildren: () => import('./user/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'usuario/logout',
+    loadChildren: () => import('./user/logout/logout.module').then( m => m.LogoutPageModule)
+  },
+  {
+    path: 'usuario/perfil',
+    loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
+  },
 
   /**
    * Oooops! Atenção!

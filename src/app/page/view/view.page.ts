@@ -19,7 +19,7 @@ export class ViewPage implements OnInit {
   // Conexão com o Firebase
   app = initializeApp(environment.firebase);
 
-  // Conexão com o banco de dados
+  // Conexão com o banco de dadosKw
   db = getFirestore();
 
   // Armazena o artigo completo
