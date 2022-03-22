@@ -22,11 +22,12 @@ export class AppComponent implements OnInit {
   // executada sempre que esta página é 'aberta'
   ngOnInit() {
 
-    // Verifica se esta logado
+    // Verifica se tem usuario logado
     this.auth.authState.subscribe(user => {
       if (user) {
+
+        // Armazena os dados do usuário em 'this.user'
         this.user = user;
-        console.log(user);
       }
     });
 

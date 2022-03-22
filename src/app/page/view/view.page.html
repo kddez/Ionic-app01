@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
 
-    <!-- Ícone do menu -->
+    <!-- Ícone para voltar -->
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/usuarios"></ion-back-button>
     </ion-buttons>
@@ -17,10 +17,42 @@
   </div>
 
   <h2 class="ion-text-center">{{ art.title }}</h2>
-  <small class="date-time">{{ art.date | date :'d/m/Y'}} às {{ art.date | date :'H:mm'}}.</small>
+  <small class="date-time">{{ art.date | date :'d/m/Y' }} às {{ art.date | date :'H:mm'}}.</small>
   <div [innerHTML]="art.body"></div>
 
-  &nbsp;
-  <ion-button size="block" routerLink="/usuarios">&larr; Voltar</ion-button>
+  <ion-button class="ion-margin-top" routerLink="/usuarios">
+    <ion-icon name="arrow-back" slot="start"></ion-icon>
+    Voltar
+  </ion-button>
+
+  <ion-item-divider class="ion-margin-bottom"></ion-item-divider>
+
+  <div *ngIf="auth.user | async as user; else showLogin">
+    <ion-label>Deixe seu comentário:</ion-label>
+    <ion-textarea [(ngModel)]="comment" auto-grow></ion-textarea>
+    <ion-button (click)="sendComment()">Enviar</ion-button>
+  </div>
+
+  <ng-template #showLogin>
+    <ion-button routerLink="/usuario/login">
+      <ion-icon name="log-in" slot="start"></ion-icon>
+      Logue-se para comentar
+    </ion-button>
+  </ng-template>
+
+  <ion-item-divider class="ion-no-padding"></ion-item-divider>
+
+  <h3>Comentários</h3>
+
+  <div *ngIf="comments">
+
+    <ion-card *ngFor="let comment of comments" class="ion-no-margin ion-margin-top">
+      <ion-card-header>
+        <ion-card-subtitle>Por {{ comment.name }} em {{ comment.date | date :'d/m/Y' }}.</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>{{ comment.comment }}</ion-card-content>
+    </ion-card>
+
+  </div>
 
 </ion-content>

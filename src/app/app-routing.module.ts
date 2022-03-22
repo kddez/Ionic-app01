@@ -1,6 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+// Importa dependências
+import { AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/compat/auth-guard';
+
+// Redireciona usuário não logado para a página de login
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['usuario/login']);
+
+// Redireciona usuário já logado para a página home
+const redirectLoggedInToItems = () => redirectLoggedInTo(['inicio']);
+
 const routes: Routes = [
   {
     path: '',
@@ -53,23 +62,28 @@ const routes: Routes = [
   },
   {
     path: 'view/:id',
-    loadChildren: () => import('./page/view/view.module').then( m => m.ViewPageModule)
+    loadChildren: () => import('./page/view/view.module').then(m => m.ViewPageModule)
   },
   {
     path: 'usuario/login',
-    loadChildren: () => import('./user/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./user/login/login.module').then(m => m.LoginPageModule),
+
+    // Somente se não estiver logado.
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }
   },
   {
     path: 'usuario/logout',
-    loadChildren: () => import('./user/logout/logout.module').then( m => m.LogoutPageModule)
+    loadChildren: () => import('./user/logout/logout.module').then(m => m.LogoutPageModule),
+
+    // Somente se estiver logado.
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'usuario/perfil',
-    loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
-  },
-  {
-    path: 'test1',
-    loadChildren: () => import('./test/test1/test1.module').then( m => m.Test1PageModule)
+    loadChildren: () => import('./user/profile/profile.module').then(m => m.ProfilePageModule),
+
+    // Somente se estiver logado.
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
 
   /**

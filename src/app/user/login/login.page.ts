@@ -28,33 +28,35 @@ export class LoginPage implements OnInit {
     // Faz a autenticação do usuário pelo provedor
     this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
 
-    // Se der certo...
-    .then(
+      // Se der certo...
+      .then(
 
-      // Obtém os dados do usuário
-      (user) => {
-        console.log(user.user);
-        this.presentAlert(user.user.displayName);
-      }
-    );
+        // Obtém os dados do usuário
+        (user) => {
+
+          // "Chama" a caixa de alerta
+          this.presentAlert(user.user.displayName);
+        }
+      );
   }
 
+  // Exibe uma caixa de alerta ao logar-se
+  // Referências: https://ionicframework.com/docs/api/alert
   async presentAlert(userName) {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
       header: `Olá ${userName}!`,
       message: 'Você já pode acessar nosso conteúdo exclusivo...',
       buttons: [
         {
           text: 'Ok',
           handler: () => {
-            // Vai para a página inicial
+
+            // Quando clicar em [Ok] na caixa, vai para a página inicial
             this.route.navigate(['/inicio']);
           }
         }
       ]
     });
-
     await alert.present();
   }
 

@@ -1,15 +1,26 @@
 <ion-header>
   <ion-toolbar>
 
-        <!-- Ícone do menu -->
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+    <!-- Ícone para voltar -->
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/usuario/perfil"></ion-back-button>
+    </ion-buttons>
 
     <ion-title>Logout / Sair</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+
+  <div class="ion-text-center">
+    <ion-icon name="log-out"></ion-icon>
+  </div>
+  <p><strong>Tem certeza que deseja sair do aplicativo?</strong></p>
+  <p>Se sair, precisará logar-se novamente para ter acesso ao conteúdo exclusivo.</p>
+
+  <ion-button expand="block" (click)="logout()" color="danger">
+    <ion-icon name="log-out" slot="start"></ion-icon>
+    Logout / Sair
+  </ion-button>
 
 </ion-content>
