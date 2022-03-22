@@ -44,14 +44,14 @@
 
               <ion-item routerDirection="root" routerLink="/usuario/perfil" lines="none" detail="false" routerLinkActive="selected">
                 <ion-thumbnail slot="start">
-                  <img src="{{ user.photoURL }}">
+                  <img src="{{ user.photoURL }}" referrerpolicy="no-referrer" alt="{{ user.displayName }}">
                 </ion-thumbnail>
-                <ion-label>Ver perfil</ion-label>
+                <ion-label><strong>{{ user.displayName }}</strong><br>Ver perfil</ion-label>
               </ion-item>
 
             </div>
 
-            <ng-template id="showLogin">
+            <ng-template #showLogin>
 
               <ion-item routerDirection="root" routerLink="/usuario/login" lines="none" detail="false" routerLinkActive="selected">
                 <ion-icon slot="start" ios="log-in-outline" md="log-in-sharp"></ion-icon>

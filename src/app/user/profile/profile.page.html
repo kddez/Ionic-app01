@@ -14,7 +14,7 @@
 
   <ion-card>
     <div class="ion-text-center">
-      <img src="{{ user.photoURL }}" />
+      <img src="{{ user.photoURL }}" referrerpolicy="no-referrer" alt="{{ user.displayName }}">
     </div>
     <ion-card-header>
       <ion-card-title>{{ user.displayName }}</ion-card-title>
@@ -35,15 +35,16 @@
         </ul>
       </ul>
 
-      <p>Seu perfil é mantido pelo Google. Clique no botão abaixo para acessá-lo:</p>
-      &nbsp;
-      <ion-button name="logo-octocat" expand="block" (click)="toGoogle()">Ver / Editar perfil</ion-button>
-      &nbsp;
+      <p class="ion-margin-bottom">Seu perfil é mantido pelo Google. Clique no botão abaixo para acessá-lo:</p>
+
+      <ion-button class="ion-margin-bottom ion-margin-top" expand="block" (click)="toGoogle()">Ver / Editar perfil</ion-button>
+
       <p>Clique no botão abaixo para fazer 'logout'.</p>
+
+      <ion-button class="ion-margin-top" expand="block" color="danger" routerLink="/usuario/logout">
+        <ion-icon name="log-out" slot="start"></ion-icon>Logout / Sair
+      </ion-button>
 
     </ion-card-content>
   </ion-card>
-
-
-
 </ion-content>

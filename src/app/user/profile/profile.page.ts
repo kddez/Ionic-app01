@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Importa dependências
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,8 @@ export class ProfilePage implements OnInit {
   constructor(
 
     // Injeta dependências
-    public auth: AngularFireAuth
+    public auth: AngularFireAuth,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -29,20 +31,15 @@ export class ProfilePage implements OnInit {
         // Converte as datas do perfil para JavaScript
         const createdAt = new Date(this.user.metadata.createdAt);
         const lastLoginAt = new Date(this.user.metadata.lastLoginAt);
-
-
-
-
-
-        console.log(createdAt, lastLoginAt);
       }
     });
 
   }
 
-  // Envia usuário para perfil do Google
+  // Envia usuário para perfil do Google em uma nova aba/janela do navegador
   toGoogle() {
-
+    window.open('https://myaccount.google.com/');
+    return false;
   }
 
 }
