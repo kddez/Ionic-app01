@@ -7,35 +7,31 @@
     </ion-buttons>
 
     <ion-title>Questões frequêntes</ion-title>
-  </ion-toolbar> 
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-  <div class="ion-text-center">
+  <div class="ion-text-center ion-margin-bottom">
     <ion-img src="assets/faq01.png"></ion-img>
   </div>
-  &nbsp;
+
+  <small>Clique em uma pergunta para exibir a resposta:</small>
 
   <!--
     Só exibe a página se existem dados em 'faqs'.
     Lembre-se que esses dados vem do backend na Internet.
   -->
-  <div *ngIf="faqs">
+  <ion-list *ngIf="faqs">
 
     <!--
       O loop 'ngFor' itera cada item de 'faqs', armazenando em 'faq' e exibindo.
       O conteúdo de <ion-item-divider> será repetido para cada item de 'faqs'.
     -->
-    <ion-item-divider *ngFor="let faq of faqs">
+    <ion-item *ngFor="let faq of faqs">
+      <ion-label text-wrap (click)="show(faq.question, faq.response)"><strong>{{ faq.question }}</strong></ion-label>
+    </ion-item>
 
-      <dl>
-        <dt><strong>{{ faq.question }}</strong></dt><br>
-        <dd>{{ faq.response }}</dd>
-      </dl>
-
-    </ion-item-divider>
-
-  </div>
+  </ion-list>
 
 </ion-content>

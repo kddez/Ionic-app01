@@ -12,4 +12,66 @@
 
 <ion-content class="ion-padding">
 
+  <div class="ion-text-center">
+    <ion-icon name="chatbubbles" color="warning"></ion-icon>
+  </div>
+
+  <p>Preencha todos os campos para enviar um contato para a equipe do aplicativo.</p>
+
+  <form [formGroup]="contactForm" (ngSubmit)="submitForm()" novalidate>
+
+    <ion-list lines="full" class="ion-no-margin">
+
+      <ion-item>
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input type="text" formControlName="name" required></ion-input>
+
+        <ion-text color="danger" *ngIf="contactForm.controls.name.errors">
+          <small *ngIf="contactForm.controls.name.errors?.required">Preencha este campo.</small>
+          <small *ngIf="contactForm.controls.name.errors?.minlength">Pelo menos 3 caracteres.</small>
+        </ion-text>
+
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">E-mail:</ion-label>
+        <ion-input type="email" formControlName="email" required></ion-input>
+
+        <ion-text color="danger" *ngIf="contactForm.controls.name.errors">
+          <small *ngIf="contactForm.controls.email.errors?.required">Preencha este campo.</small>
+          <small *ngIf="contactForm.controls.email.errors?.email">Deve ser um e-mail.</small>
+        </ion-text>
+
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Assunto:</ion-label>
+        <ion-input type="subject" formControlName="subject" required></ion-input>
+
+        <ion-text color="danger" *ngIf="contactForm.controls.name.errors">
+          <small *ngIf="contactForm.controls.subject.errors?.required">Preencha este campo.</small>
+          <small *ngIf="contactForm.controls.subject.errors?.minlength">Pelo menos 5 caracteres.</small>
+        </ion-text>
+
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Mensagem:</ion-label>
+        <ion-textarea formControlName="message" required autoGrow></ion-textarea>
+
+        <ion-text color="danger" *ngIf="contactForm.controls.name.errors">
+          <small *ngIf="contactForm.controls.message.errors?.required">Preencha este campo.</small>
+          <small *ngIf="contactForm.controls.message.errors?.minlength">Pelo menos 5 caracteres.</small>
+        </ion-text>
+
+      </ion-item>
+
+      <ion-item>
+        <ion-button type="submit" size="default" color="primary" [disabled]="contactForm.invalid">Enviar</ion-button>
+      </ion-item>
+
+    </ion-list>
+
+  </form>
+
 </ion-content>
