@@ -29,7 +29,7 @@
       O conteúdo de <ion-item-divider> será repetido para cada item de 'faqs'.
     -->
     <ion-item *ngFor="let faq of faqs">
-      <ion-label text-wrap (click)="show(faq.question, faq.response)"><strong>{{ faq.question }}</strong></ion-label>
+      <ion-label text-wrap (click)="showFaq(faq.question, faq.response)"><strong>{{ faq.question }}</strong></ion-label>
     </ion-item>
 
   </ion-list>

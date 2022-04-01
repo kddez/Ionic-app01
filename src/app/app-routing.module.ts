@@ -1,22 +1,17 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-// Importa dependências
-import { AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/compat/auth-guard';
-
-// Redireciona usuário não logado para a página de login
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['usuario/login']);
-
-// Redireciona usuário já logado para a página home
-const redirectLoggedInToItems = () => redirectLoggedInTo(['inicio']);
-
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'inicio', // Define página (rota) inicial do aplicativo.
     pathMatch: 'full'
   },
   {
+    /**
+     * Página original de template.
+     * Não será usada no aplicativo e pode ser removida no futuro.
+     */
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then(m => m.FolderPageModule)
   },
@@ -44,19 +39,21 @@ const routes: Routes = [
     path: 'faq',
     loadChildren: () => import('./page/faq/faq.module').then(m => m.FaqPageModule)
   },
-
-  /**
-   * Páginas auxiliares (administrativas).
-   * Não serão usadas no aplicativo.
-   */
   {
-    // Cria a coleção 'faq' no Firestore.
+    /**
+     * Cria a coleção 'faq' no Firestore.
+     * Página auxiliar (administrativa).
+     * Não será usada no aplicativo e pode ser removida no futuro.
+     */
     path: 'db/faq',
     loadChildren: () => import('./db/faq/faq.module').then(m => m.FaqPageModule)
   },
-
-  // Cria a coleção 'manual' no Firestore.
   {
+    /**
+     * Cria a coleção 'manual' no Firestore.
+     * Página auxiliar (administrativa).
+     * Não será usada no aplicativo e pode ser removida no futuro.
+     */
     path: 'db/manual',
     loadChildren: () => import('./db/manual/manual.module').then(m => m.ManualPageModule)
   },
@@ -65,33 +62,11 @@ const routes: Routes = [
     loadChildren: () => import('./page/view/view.module').then(m => m.ViewPageModule)
   },
   {
-    path: 'usuario/login',
-    loadChildren: () => import('./user/login/login.module').then(m => m.LoginPageModule),
-
-    // Somente se não estiver logado.
-    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToItems }
-  },
-  {
-    path: 'usuario/logout',
-    loadChildren: () => import('./user/logout/logout.module').then(m => m.LogoutPageModule),
-
-    // Somente se estiver logado.
-    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
-  },
-  {
-    path: 'usuario/perfil',
-    loadChildren: () => import('./user/profile/profile.module').then(m => m.ProfilePageModule),
-
-    // Somente se estiver logado.
-    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
-  },
-
-  /**
-   * Oooops! Atenção!
-   * Esta rota (path: '**') deve ser SEMPRE a última rota desta lista.
-   * Se criar novas páginas, edite este arquivo para satisfazer a regra acima.
-   */
-  {
+    /**
+     * Oooops! Atenção!
+     * Esta rota (path: '**') deve ser SEMPRE a última rota desta lista.
+     * Se criar novas páginas, edite este arquivo para satisfazer a regra acima.
+     */
     path: '**',
     loadChildren: () => import('./page/e404/e404.module').then(m => m.E404PageModule)
   }

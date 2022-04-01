@@ -27,20 +27,54 @@
 
   <ion-item-divider class="ion-margin-bottom"></ion-item-divider>
 
-  <div *ngIf="auth.user | async as user; else showLogin">
-    <ion-label>Deixe seu comentário:</ion-label>
-    <ion-textarea [(ngModel)]="comment" auto-grow></ion-textarea>
-    <ion-button (click)="sendComment()">Enviar</ion-button>
-  </div>
+  <h3>Comente</h3>
 
-  <ng-template #showLogin>
-    <ion-button routerLink="/usuario/login">
-      <ion-icon name="log-in" slot="start"></ion-icon>
-      Logue-se para comentar
-    </ion-button>
-  </ng-template>
+  <form [formGroup]="commentForm" (ngSubmit)="submitForm()" novalidate>
 
-  <ion-item-divider class="ion-no-padding"></ion-item-divider>
+    <ion-list lines="full" class="ion-no-margin">
+
+      <ion-item>
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input type="text" formControlName="name" required></ion-input>
+
+        <ion-text color="danger" *ngIf="commentForm.controls.name.dirty && commentForm.controls.name.errors">
+          <small *ngIf="commentForm.controls.name.errors?.required">Preencha este campo.</small>
+          <small *ngIf="commentForm.controls.name.errors?.minlength">Pelo menos 3 caracteres.</small>
+        </ion-text>
+
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">E-mail:</ion-label>
+        <ion-input type="email" formControlName="email" required></ion-input>
+
+        <ion-text color="danger" *ngIf="commentForm.controls.email.dirty && commentForm.controls.name.errors">
+          <small *ngIf="commentForm.controls.email.errors?.required">Preencha este campo.</small>
+          <small *ngIf="commentForm.controls.email.errors?.email">Deve ser um e-mail.</small>
+        </ion-text>
+
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Comentário:</ion-label>
+        <ion-textarea formControlName="comment" required autoGrow></ion-textarea>
+
+        <ion-text color="danger" *ngIf="commentForm.controls.comment.dirty && commentForm.controls.name.errors">
+          <small *ngIf="commentForm.controls.comment.errors?.required">Preencha este campo.</small>
+          <small *ngIf="commentForm.controls.comment.errors?.minlength">Pelo menos 5 caracteres.</small>
+        </ion-text>
+
+      </ion-item>
+
+      <ion-item>
+        <ion-button type="submit" size="default" color="primary" [disabled]="commentForm.invalid">Enviar</ion-button>
+      </ion-item>
+
+    </ion-list>
+
+  </form>
+
+    <ion-item-divider class="ion-no-padding"></ion-item-divider>
 
   <h3>Comentários</h3>
 

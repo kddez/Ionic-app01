@@ -38,30 +38,6 @@
               <ion-label>Sobre</ion-label>
             </ion-item>
 
-            <ion-item-divider></ion-item-divider>
-
-            <!-- Se tem usuário logado, exibe o bloco dentro da div abaixo. -->
-            <div *ngIf="auth.user | async as user; else showLogin">
-
-              <ion-item routerDirection="root" routerLink="/usuario/perfil" lines="none" detail="false" routerLinkActive="selected">
-                <ion-thumbnail slot="start">
-                  <img src="{{ user.photoURL }}" referrerpolicy="no-referrer" alt="{{ user.displayName }}">
-                </ion-thumbnail>
-                <ion-label><strong>{{ user.displayName }}</strong><br>Ver perfil</ion-label>
-              </ion-item>
-
-            </div>
-
-            <!-- Se não tem usuário logado, exibe este bloco na div acima. -->
-            <ng-template #showLogin>
-
-              <ion-item routerDirection="root" routerLink="/usuario/login" lines="none" detail="false" routerLinkActive="selected">
-                <ion-icon slot="start" ios="log-in-outline" md="log-in-sharp"></ion-icon>
-                <ion-label>Login / Entrar</ion-label>
-              </ion-item>
-
-            </ng-template>
-
           </ion-menu-toggle>
         </ion-list>
 
